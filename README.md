@@ -4,8 +4,9 @@ queries on the Sovrin Test Network. It is possible to connect to the Live Networ
 
 ## Getting started
 Ensure the Node version of at least 10.12.0 is installed
+This project requires libindy to be installed: https://github.com/hyperledger/indy-sdk
 
-###Configuration
+### Configuration
 config.json is the configuration that will be used with config.example.json being a starting point
 * poolName : a name for the pool connection to the ledger
 * poolGenesisTxnPath : The genesis file points to the Sovrin Test Network. 
@@ -15,7 +16,7 @@ config.json is the configuration that will be used with config.example.json bein
 * agentDid : resultant did from provision script - based on seed passed in
 * agentVerKey : resultant verykey from provision script - based on seed passed in
 
-##Provision
+## Provision
 Your Agent will need to be provisioned, this is done by running the provision script with the following parameter
 * seed - the seed that will be used to create the did and keys
 * walletKey - the key to secure the indy wallet - do not loose this
