@@ -1,0 +1,73 @@
+{
+  "name": "sovrin_tools",
+  "version": "1.0.0",
+  "description": "a few online tools that integrate with sovrin",
+  "main": "index.js",
+  "scripts": {
+    "provision": "node ./build/provision.js",
+    "start_web_app": "webpack-dev-server --mode development --open --hot",
+    "start_server": "npm run build_client && npm run build_server && node ./build/server/server.js",
+    "start_dev_watch": "concurrently 'npm run build_client_watch' 'npm run build_server_watch' 'nodemon ./build/server/server.js'",
+    "build_client": "webpack",
+    "clean": "rm -rf build && mkdir build",
+    "build_server": "babel ./src/server -d build/server && babel ./src/provision.js -d build",
+    "build_client_watch": "webpack --watch",
+    "build_server_watch": "babel ./src/server -d build/server --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/phillipgibb/sovrin_tools.git"
+  },
+  "keywords": [
+    "blockchain",
+    "ssi",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "Phillip Gibb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phillipgibb/sovrin_tools/issues"
+  },
+  "homepage": "https://github.com/phillipgibb/sovrin_tools#readme",
+  "devDependencies": {
+    "@babel/core": "7.0.1",
+    "@babel/node": "7.0.0",
+    "@babel/plugin-proposal-class-properties": "7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.2",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "node-sass": "4.9.3",
+    "path": "^0.12.7",
+    "sass-loader": "7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "3.1.8"
+  },
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.1.0",
+    "dotenv-webpack": "^1.5.7",
+    "eslint": "^5.8.0",
+    "fs": "0.0.1-security",
+    "helmet": "^3.14.0",
+    "indy-sdk": "^1.6.2",
+    "morgan": "^1.9.1",
+    "node": "^10.12.0",
+    "react": "16.5.1",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "16.5.1",
+    "react-router-dom": "^4.3.1",
+    "reactstrap": "^6.5.0",
+    "stream": "0.0.2",
+    "winston": "^3.1.0"
+  }
+}
