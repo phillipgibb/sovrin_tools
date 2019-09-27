@@ -42,7 +42,7 @@ export class SchemaLookup extends Component {
     console.log(this.state)  
     const length = this.state.schemaId.length;
     console.log(`Length: ${length}`)
-    if (length >= 16 & length <= 60){
+    if (length >= 0 & length <= 60){
       console.log('looking up Schema...')
       const _url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api/"
       try {

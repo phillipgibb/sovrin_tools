@@ -57,6 +57,8 @@ export let getSchemas = async (did) => {
         submitterDid:${did}
     }
   }`
+  await sdk.setProtocolVersion(Number(config.protocolVersion));
+
   let getSchemaRequest = await sdk.buildGetAttribRequest(config.agentDid, did, filter);
   let metadata = await sdk.submitRequest(await pool.get(), getSchemaRequest);
 
@@ -71,9 +73,23 @@ export let getSchemas = async (did) => {
 };
 
 export let getSchema = async (schemaId) => {
-  let getSchemaRequest = await sdk.buildGetSchemaRequest(config.agentDid,  await wallet.get(), config.agentDid, schemaId);
-  let getSchemaResponse = await sdk.signAndSubmitRequest(await pool.get(), getSchemaRequest);
+  await sdk.setProtocolVersion(Number(config.protocolVersion));
+  winston.info(`getSchema`)
+  sdk.setLogger(function (level, target, message, modulePath, file, line) {
+    winston.info(`${level}: ${target}, ${message}, ${modulePath}, ${file}, ${line}`);
+  })
+  let getSchemaRequest = await sdk.buildGetSchemaRequest(config.agentDid, schemaId);
+  winston.info(`getSchemaRequest: ${JSON.stringify(getSchemaRequest)}`)
+
+  let getSchemaResponse = await sdk.signAndSubmitRequest(await pool.get(),await wallet.get(), config.agentDid, getSchemaRequest);
+  winston.info(`getSchemaResponse: ${JSON.stringify(getSchemaResponse)}`)
+
   let [, schema] = await sdk.parseGetSchemaResponse(getSchemaResponse);
+
+
+  // const getSchemaRequest = await sdk.buildGetSchemaRequest(config.agentDid, schemaId)
+  //   const getSchemaResponse = await sdk.signAndSubmitRequest(await pool.get(), await wallet.get(), config.agentDid, getSchemaRequest)
+  //   const [, schema] = await sdk.parseGetSchemaResponse(getSchemaResponse)
   return schema;
 };
 
@@ -95,9 +111,17 @@ export let getEndpointDidAttribute = async (did, attribute) => {
 
 export let getCredentialDefinition = async (cdid) => {
   try{
+    await sdk.setProtocolVersion(Number(config.protocolVersion));
+
     let getCdRequest = await sdk.buildGetCredDefRequest(config.agentDid, cdid);
+    winston.info(`getCdRequest: ${JSON.stringify(getCdRequest)}`)
+
     let getCdResponse =  await sdk.signAndSubmitRequest(await pool.get(),  await wallet.get(), config.agentDid, getCdRequest);
+    winston.info(`getCdResponse: ${JSON.stringify(getCdResponse)}`)
+
     let [,cred] = await sdk.parseGetCredDefResponse(getCdResponse);
+    winston.info(`cred: ${JSON.stringify(cred)}`)
+
     return cred
   } catch (e1) {
     winston.info(`Error getCredentialDefinition: ${e1}`)

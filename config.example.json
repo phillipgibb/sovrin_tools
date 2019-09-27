@@ -2,8 +2,8 @@
   "poolName": "pool1",
   "poolGenesisTxnPath": "pool_transactions_sandbox_genesis",
   "protocolVersion": 2,
-  "walletName": "",
-  "walletKey": "",
-  "agentDid": "",
-  "agentVerKey": ""
+  "walletName": "wallet2",
+  "walletKey": 12345,
+  "agentDid": "RbTrA8BX6gZdEW9LUyFQv7",
+  "agentVerKey": "EQUJdikaXBAXJgELqgwKNofJmcGq5B1rYbg9rp5bZLih"
 }

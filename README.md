@@ -30,6 +30,8 @@ onto the Sovrin Test Network:
 
 ## Scripts
 * ```npm install``` to load the node_modules
+* ```npm build_client``` to build with webpack for the client
+* ```npm build_server``` to build the server
 * ```npm run provision``` to create did and verkey from seed e.g. ```npm run provision -- --seed="000000000000000000000000Agent001" --walletKey="1234" --walletName="wallet2"```
 * ```npm run start_server``` run the server on port 5000
 * ```npm run start_web_app``` run the web app on port 8080
@@ -40,7 +42,7 @@ onto the Sovrin Test Network:
 ## Build With
 
 * ExpressJS
-* WebPack
+* Webpack
 * Babel
 * ReactJS
 * Axios

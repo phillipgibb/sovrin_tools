@@ -26,6 +26,7 @@ exports.setup = async function () {
     genesis_txn: poolconfig
   };
   try {
+    await sdk.setProtocolVersion(Number(config.protocolVersion));
     await sdk.createPoolLedgerConfig(config.poolName, poolConfig);
   } catch (e) {
     if (e.message !== "PoolLedgerConfigAlreadyExistsError") {
@@ -34,7 +35,6 @@ exports.setup = async function () {
   } finally {
     winston.info('Opening Pool Ledger')
     try {
-      await sdk.setProtocolVersion(Number(config.protocolVersion));
       pool = await sdk.openPoolLedger(config.poolName);
     } catch (e1) {
       winston.info(`Error Opening Pool Ledger: ${e1}`)

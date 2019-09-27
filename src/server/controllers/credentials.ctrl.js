@@ -15,12 +15,13 @@ module.exports = {
   getCredentialDefinition: (req, res, next) => {
       
     getCredentialDefinition(req.query.cdid).then((cd) => {
-      res.send(`{${cd}}`);
+   
+      res.send(cd.result);
       next();      
     }).catch((e) =>  {
       winston.log('error:   ' + e);
       res.send(`{${e}}`);
-      next();      
+      // next();      
     });
   }
 }
